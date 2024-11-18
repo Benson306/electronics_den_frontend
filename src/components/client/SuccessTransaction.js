@@ -24,7 +24,7 @@ const SuccessTransaction = () => {
                     Check Your email for Details.
                 </div>
                 <div className="flex justify-center text-center px-10 ml-5 text-lg text-gray-600  mb-3 lg:mb-5">
-                    You will be contacted by an IkoNini agent within the next few hours to make arrangements on delivery.
+                    You will be contacted by an Electronics Den agent within the next few hours to make arrangements on delivery.
                 </div>
                 <div className="flex justify-center text-center mb-4 px-10 ml-5 text-lg">
                     Thank You!

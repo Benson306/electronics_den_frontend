@@ -29,7 +29,7 @@ const HeaderBar = () => {
     }
     { !show && <div className='lg:pl-10 w-6'></div>}
 
-    <div className='font-sans text-lg lg:text-2xl text-center tracking-widest font-bold flex items-center'>IKO NINI</div>
+    <div className='font-sans text-lg lg:text-2xl text-center tracking-widest font-bold flex items-center'>ELECTRONICS DEN</div>
     
     <Link to={'/cart'} >
     <div className='flex items-center'>
