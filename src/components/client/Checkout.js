@@ -5,6 +5,7 @@ import { Field, Form, Formik } from 'formik'
 import SyncLoader from "react-spinners/SyncLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 const myRegex = /^07\d{8}$/;
 
@@ -16,30 +17,17 @@ const Checkout = () => {
 
     const [deliveryCost, setDeliveryCost] = useState(0);
 
-    const [link, setLink] = useState('');
-
-    const [showIframe, setShowIframe] = useState(false);
-
     const [loading, setLoading] = useState(false);
 
     const [towns, setTowns] = useState([]);
 
     const [townsLoading, setTownsLoading] = useState(true);
 
-    const [allVideos, SetAllVideos] = useState(false);
-
     useEffect(()=>{
-        let allItemsAreVideos = products.every(item => item.title);
 
         if(location !== null){
             const town = towns.filter( town => town._id === location);
-            if(allItemsAreVideos){
-                setDeliveryCost(0);
-            }else{
-                setDeliveryCost(town[0].price);
-            }
-            SetAllVideos(allItemsAreVideos);
-            
+            setDeliveryCost(town[0].price);            
         }
     }, [location])
 
@@ -51,12 +39,7 @@ const Checkout = () => {
                 data.json().then((res)=>{
                     setTowns(res);
                     setLocation(res[0]._id);
-                    if(allItemsAreVideos){
-                        setDeliveryCost(0);
-                    }else{
-                        setDeliveryCost(res[0].price);
-                    }
-                    SetAllVideos(allItemsAreVideos);
+                    setDeliveryCost(res[0].price);
                     setTownsLoading(false);
                 })
             }else{
@@ -77,11 +60,13 @@ const Checkout = () => {
         minPrice: yup.number().min(deliveryCost + total, `Minimum price is ${deliveryCost + total}`)
     })
 
+    const navigate = useNavigate();
+
     const handleSubmit = (data) =>{
         setLoading(true);
         let newData = {...data, products, location};
 
-        fetch(`${process.env.REACT_APP_API_URL}/Checkout`,{
+        fetch(`${process.env.REACT_APP_API_URL}/Payless_checkout`,{
             method: 'POST',
             headers:{
                 "Content-Type":"application/json"
@@ -91,9 +76,9 @@ const Checkout = () => {
         .then((res)=>{
             if(res.ok){
                 res.json().then(response => {
-                    setLink(response.redirect_url);
                     setLoading(false);
-                    setShowIframe(true);
+                    toast.success("Success");
+                    navigate("/confirm");
                 })
             }else{ 
                 if(res.status == 400){
@@ -121,20 +106,6 @@ const Checkout = () => {
         <ToastContainer />
             <div className="flex justify-center mb-10 text-xl">Checkout</div>
             
-    { showIframe ? (
-        <div className="flex justify-center items-center">
-        <iframe
-          src={link}
-          title="Secure Checkout"
-          width="80%"
-          height="500px"
-          frameBorder="0"
-        />
-        </div>
-      )
-    
-    :
-    
     <Formik
             initialValues={{firstname: firstName, secondname: secondName, email:email, phoneNumber:phoneNumber, minPrice: deliveryCost + total}}
             enableReinitialize={true}
@@ -171,7 +142,6 @@ const Checkout = () => {
             </div>
 
             <div className="block w-full lg:w-1/2">
-                { !allVideos && 
                 <div>
                     <div className="font-bold mb-5">Select Delivery Location</div>
                     <select className="w-full p-1 lg:p-3 bg-white mb-4 border-b-2" onChange={(e)=>{ setLocation(e.target.value); }}>
@@ -185,10 +155,7 @@ const Checkout = () => {
                             }
                     </select>
                 </div>
-                }
-                {
-                    allVideos && <div className="mb-8 text-md text-zinc-700 italic">* Links to our watch streams will be emailed to you via the email you have provided on <b>Account Information</b></div>
-                }
+                
                 <div className="font-bold mb-5">Order Summary</div>
                 {
                     products.map( product =>(
@@ -200,7 +167,7 @@ const Checkout = () => {
                                X { product.quantity }
                             </div>
                             <div className="ml-2">
-                                KES. { product.quantity * product.price }
+                                KES. { (product.quantity * product.price).toLocaleString() }
                             </div>
                         </div>
                     ))
@@ -213,20 +180,20 @@ const Checkout = () => {
                 </div>
 
                 <div className="flex mt-5 text-xs lg:text-base">
-                    <div className="w-72 lg:w-80 lg:mr-4 font-bold">Min Price:</div>
+                    <div className="w-72 lg:w-80 lg:mr-4 font-bold">Total Price:</div>
                     <div>
                         <div className="flex">
                             <span className="p-2">KES. </span>
-                            <Field type="number" name="minPrice" value={props.values.minPrice} className="border-b-2 p-2 mb-2 w-full lg:w-3/4" />
+                            <di className="border-b-2 p-2 mb-2 w-full lg:w-3/4">{props.values.minPrice.toLocaleString()}</di>
                         </div>
                         <div className="p-1 capitalize text-red-900 text-xs">{props.touched.minPrice && props.errors.minPrice}</div>
                     </div>
                     {/* <div className="ml-12 lg:ml-0">KES. {total + deliveryCost}</div> */}
                 </div>
 
-                <button className="collapse lg:visible w-28 flex justify-center p-1 border-2 border-black mt-10 hover:bg-black hover:text-white" type="submit">
+                <button className="collapse lg:visible w-44 flex justify-center p-1 border-2 border-black mt-10 hover:bg-black hover:text-white" type="submit">
                     { loading &&  <div><SyncLoader size={6} color={"black"}/></div> }
-                    {!loading && <div>PAY</div> }
+                    {!loading && <div className="mx-5">PLACE ORDER</div> }
                 </button>
 
 
@@ -236,12 +203,12 @@ const Checkout = () => {
 
         <button type="submit" className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif flex justify-center">
            { loading &&  <div><SyncLoader size={6} color={"#fff"}/></div> }
-           {!loading && <div>PAY</div> }
+           {!loading && <div>PLACE ORDER</div> }
         </button>
         </Form>
     )}
     </Formik>
-    }
+    
     </div>
     );
 }

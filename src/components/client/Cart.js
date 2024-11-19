@@ -24,10 +24,8 @@ const Cart = () => {
                     
                     <img src={`${process.env.REACT_APP_API_URL}/uploads/${ product.image || product.thumbnail }`} className="w-20 h-20 lg:w-44 lg:h-auto"/>
                     
-                    <div className="block lg:flex lg:gap-5  lg:justify-around text-sm lg:text-base ">
-                        <div className="flex items-center text-xs lg:text-base w-52 lg:w-64 font-bold lg:font-normal">{ product.productName || product.title }</div>
-                        { 
-                            product.type == "hoodie" || product.type == "tshirt" ?  
+                    <div className="block lg:flex lg:gap-5  lg:justify-around text-sm lg:text-base ml-5">
+                        <div className="flex items-center text-xs lg:text-base w-44 lg:w-64 font-bold lg:font-normal">{ product.productName || product.title }</div>
                         <div className="flex py-0 w-10 lg:w-28">
                                 <div className="text-gray-500 w-10 lg:w-10 flex items-center">Qty:</div>
                                 <div className="flex items-center">{product.quantity}
@@ -41,24 +39,7 @@ const Cart = () => {
                                 </select>    */}
                                 </div>             
                         </div>
-                        : 
-                        <div className="pb-2 lg:pb-4 flex gap-2 items-center text-sm mt-2 lg:mt-0">
-                            <img src={require('../../images/clock.png')} width={"15px"}/> 
-                            { 
-                                product.hours > 0 ? 
-                                <span className="text-sm capitalize">{product.hours} Hrs {product.minutes} Mins</span>
-                                    :
-                                <span className="text-sm capitalize">{product.minutes} Mins</span>
-                            }
-                        </div> 
-                        }
-                        { 
-                            product.type == "hoodie" || product.type == "tshirt" ?  
-                            <div className="flex items-center lg:w-24">Size: {product.size}</div> 
-                            : 
-                            <div className="flex items-center lg:w-24"></div> 
-                        }
-                        <div className="flex items-center lg:w-20">Ksh {product.price}</div>
+                        <div className="flex items-center lg:w-20">Ksh {product.price.toLocaleString()}</div>
                     </div>
                     <div className="flex items-center m-0 lg:ml-10">
                         <ClearIcon onClick={()=> handleRemoveFromCart(product)} />
@@ -69,7 +50,7 @@ const Cart = () => {
 
             <div className="flex justify-center gap-4 p-10 lg:gap-10 mt-5 lg:mt-1">
                 <div className="text-bold">Total:</div>
-                <div className="text-bold">Ksh.{total}</div>
+                <div className="text-bold">Ksh. {total.toLocaleString()}</div>
                     
             </div>
             <div className="flex justify-center px-10 ml-5 lg:mb-8">

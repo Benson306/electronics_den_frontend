@@ -20,39 +20,21 @@ const Preview = () => {
 
     const { addToCart } = useCart();
 
-    const [size, setSize] = useState(null); 
     const [quantity, setQuantity] = useState(1);
 
-    useEffect(()=>{
-        { 
-            data.xSmall ? setSize("XS") :
-        
-            data.small ? setSize("SM") :
-
-            data.medium ? setSize("M") :
-
-            data.large ? setSize("L") :
-
-            data.xLarge ? setSize("XL") :
-
-            data.xXLarge ? setSize("2XL") :
-
-            setSize(null);
-        }
-    }, [data])
 
     const handleAddToCart = ()=>{
-        addToCart({ ...data, size, quantity: Number(quantity) });
+        addToCart({ ...data, quantity: Number(quantity) });
     }
 
 
-    return ( <div className="block lg:flex mt-10 lg:mt-10">
+    return ( <div className="block lg:flex mt-10 lg:mt-32">
         <ToastContainer />
         <div className="invisible lg:visible h-0 lg:h-auto lg:w-1/2 flex justify-center">
-            <img src={`${process.env.REACT_APP_API_URL}/uploads/${data.image || data.thumbnail}`} className="object-contain" width="620px" alt="" />
+            <img src={`${process.env.REACT_APP_API_URL}/uploads/${data.image || data.thumbnail}`} className="object-contain" width="400px" alt="" />
         </div>
         <div className="visible lg:invisible w-auto lg:w-0 flex justify-center">
-            <img src={`${process.env.REACT_APP_API_URL}/uploads/${data.image || data.thumbnail}`} className="object-contain" width="310px" alt="" />
+            <img src={`${process.env.REACT_APP_API_URL}/uploads/${data.image || data.thumbnail}`} className="object-contain" width="220px" alt="" />
         </div>
 
         <div className="w-full lg:w-1/2 lg:pr-52 p-10">
@@ -60,36 +42,9 @@ const Preview = () => {
            
            <form>
 
-                { data.type == "hoodie" || data.type == "tshirt" ? 
                 <div>
-                    <div className="text-gray-500 pb-4 lg:pb-10">Ksh {data.price}</div>
-                    <hr />
-                    <div className="flex py-4">
-                            <div className="text-gray-500 w-20 flex items-center">Size</div>
-                            <select 
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-20 p-1 lg:p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            onChange={(e)=> setSize(e.target.value)}
-                            >
-                                { 
-                                    data.xSmall && <option value={"XS"}>XS</option>
-                                }
-                                {
-                                    data.small && <option value="SM">SM</option>
-                                }
-                                {
-                                    data.medium && <option value="M">M</option>
-                                }
-                                {
-                                    data.large && <option value={"L"}>L</option>
-                                }
-                                {
-                                    data.xLarge && <option value={"XL"}>XL</option>
-                                }
-                                {
-                                    data.xXLarge && <option value={"2XL"}>2XL</option>
-                                }
-                            </select>                
-                    </div>
+                    <div className="text-gray-500 pb-4 lg:pb-5 whitespace-pre-wrap text-xs lg:text-sm">{data.description}</div>
+                    <div className="text-gray-600 pb-4 lg:pb-5">Ksh {data.price}</div>
                     <hr />
                     <div className="flex py-4">
                             <div className="text-gray-500 w-20 flex items-center">Quantity</div>
@@ -105,21 +60,6 @@ const Preview = () => {
                             </select>                
                     </div>
                 </div>
-                
-                :
-                <div>
-                    <div className="pb-4 flex gap-2 items-center text-sm">
-                        <img src={require('../../images/clock.png')} width={"20px"}/>
-                        { 
-                            data.hours > 0 ? 
-                            <span className="text-sm capitalize">{data.hours} Hrs {data.minutes} Mins</span>
-                                :
-                            <span className="text-sm capitalize">{data.minutes} Mins</span>
-                        }
-                    </div>
-                    <div className="text-gray-500 pb-4 lg:pb-5">Ksh {data.price}</div>
-                </div>
-                }
                 
            </form>
            <hr />

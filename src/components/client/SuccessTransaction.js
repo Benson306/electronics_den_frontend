@@ -14,16 +14,16 @@ const SuccessTransaction = () => {
     return ( <div> 
         <div className='mt-10 lg:mt-10 flex justify-center'>
             <div className='block'>
-                <div className='flex justify-center ml-5 mb-5 lg:mb-10'>
+                <div className='flex justify-center ml-5 mb-5 lg:mb-10 mt-20'>
                     <Checkmark size='xxLarge' />
                 </div>
                 <div className="flex justify-center text-center  px-10 ml-5 text-2xl mb-5 lg:10">
                     Your Order Has Been Placed Succesfully. 
                 </div>
-                <div className="flex justify-center text-center px-10 ml-5 text-lg text-gray-600 mb-3 lg:5">
+                {/* <div className="flex justify-center text-center px-10 ml-5 text-lg text-gray-600 mb-3 lg:5">
                     Check Your email for Details.
-                </div>
-                <div className="flex justify-center text-center px-10 ml-5 text-lg text-gray-600  mb-3 lg:mb-5">
+                </div> */}
+                <div className="flex justify-center text-center px-10 ml-5 text-lg text-gray-600  mb-3 lg:mb-5 mt-10">
                     You will be contacted by an Electronics Den agent within the next few hours to make arrangements on delivery.
                 </div>
                 <div className="flex justify-center text-center mb-4 px-10 ml-5 text-lg">
