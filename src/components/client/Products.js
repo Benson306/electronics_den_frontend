@@ -29,7 +29,7 @@ const Products = () => {
             {/* Banner */}
             <div>
                 <img
-                    src={require('../../images/Home_of_electronic_copy.jpg')}
+                    src={require('../../images/Home_of_electronic_copy.png')}
                     className="object-cover w-full max-h-[400px]"
                     alt=""
                 />
