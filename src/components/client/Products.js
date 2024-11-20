@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import CarouselSection from './CarouselSection';
+import SearchIcon from '@mui/icons-material/Search';
 
 const Products = () => {
     const [loading, setLoading] = useState(true);
@@ -61,14 +62,19 @@ const Products = () => {
     return (
         <div className="min-h-scree">
             {/* Search Bar */}
-            <div className="flex justify-center my-2 mx-5">
-                <input
-                    type="text"
-                    placeholder="Search by product name or category..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="p-2 border border-gray-400 rounded-lg w-full max-w-md"
-                />
+            <div className="flex items-center justify-center my-0 lg:my-2 mx-5">
+                <div className='border border-gray-400 rounded-lg flex items-center w-11/12 lg:w-1/2'>
+                    <div className='flex items-center justify-center w-1/6'>
+                        <SearchIcon sx={{fontSize: 24}} />
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Search by product name or category..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="p-2 w-full text-sm lg:text-base"
+                    />
+                </div>
             </div>
 
             <CarouselSection />
