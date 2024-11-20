@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
+import CarouselSection from './CarouselSection';
 
 const Products = () => {
     const [loading, setLoading] = useState(true);
@@ -58,7 +59,7 @@ const Products = () => {
 
 
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-scree">
             {/* Search Bar */}
             <div className="flex justify-center my-2 mx-5">
                 <input
@@ -70,14 +71,16 @@ const Products = () => {
                 />
             </div>
 
+            <CarouselSection />
+
             {/* Banner */}
-            <div>
+            {/* <div>
                 <img
                     src={require('../../images/Home_of_electronic_copy.png')}
                     className="object-cover w-full max-h-[400px]"
                     alt=""
                 />
-            </div>
+            </div> */}
 
             <div className='w-full'>
                 <div className="flex justify-center lg:justify-end gap-2 text-sm items-center mt-2 lg:mt-5 lg:mr-5">
