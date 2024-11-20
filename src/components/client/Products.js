@@ -7,6 +7,7 @@ const Products = () => {
     const [loading, setLoading] = useState(true);
     const [hoodies, setHoodies] = useState([]);
     const [error, setError] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/get_products`)
@@ -42,16 +43,33 @@ const Products = () => {
     const [ selectedCategory, setSelectedCategory] = useState(null);
 
     const filteredData = hoodies.filter((item) => {
-        if (selectedCategory === '' || selectedCategory === null) {
-          return item;
-        } else if (item.type && item.type.includes(selectedCategory)) {
-          return item;
-        }
-      });
+        const matchesCategory =
+            selectedCategory === null || selectedCategory === 'All Electronics' || item.type?.includes(selectedCategory);
+        const matchesSearchQuery =
+            searchQuery === '' ||
+            item.productName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            item.type?.some((type) =>
+                type.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+    
+        return matchesCategory && matchesSearchQuery;
+    });
+    
 
 
     return (
         <div className="min-h-screen flex flex-col">
+            {/* Search Bar */}
+            <div className="flex justify-center my-2 mx-5">
+                <input
+                    type="text"
+                    placeholder="Search by product name or category..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="p-2 border border-gray-400 rounded-lg w-full max-w-md"
+                />
+            </div>
+
             {/* Banner */}
             <div>
                 <img
@@ -85,8 +103,8 @@ const Products = () => {
                 </div>
             </div>
             
-            <div className='flex gap-2'>
-                <div className='mt-10 ml-0 lg:ml-14 collapse lg:visible h-0 lg:h-full w-0 lg:w-1/6'>
+            <div className='block lg:flex mx-2 lg:mx-5 gap-4 min-h-screen'>
+                <div className='mt-10 ml-14 collapse lg:visible h-0 lg:h-full w-0 lg:w-1/6'>
                     <div className='font-bold'>CATEGORIES</div>
                         { loading && <div className='text-gray-700'>Loading ...</div>}
                         <div className='mt-2'>
@@ -97,7 +115,7 @@ const Products = () => {
                                 } 
                                 className='text-gray-700 hover:text-gray-900'
                             >
-                                All
+                                All Products
                             </button>
                         </div>
                         {
@@ -120,8 +138,8 @@ const Products = () => {
                 </div>
 
                 {/* All Products Section */}
-                <div className="flex-grow">
-                    <div className="text-center mt-5 text-gray-950 font-serif text-sm tracking-wider">
+                <div className="block w-full lg:w-5/6">
+                    <div className="text-center mt-2 lg:mt-5 text-gray-950 font-serif text-sm tracking-wider">
                         {selectedCategory == null ?  (<div>All Products</div>) : selectedCategory}
                     </div>
                     {loading && (
@@ -131,7 +149,7 @@ const Products = () => {
                         {!loading && `(${filteredData.length} items)`}
                     </div>
 
-                    <div className="flex flex-wrap justify-center mx-2 lg:mx-2">
+                    <div className="flex flex-wrap justify-center mx-2 lg:mx-2 gap-0 lg:gap-3">
                         {!loading &&
                             filteredData.map((hoodie) => (
                                 <Link
@@ -156,7 +174,7 @@ const Products = () => {
                                         Ksh {hoodie.price.toLocaleString()}
                                     </div>
                                 </Link>
-                            ))}
+                            ))}                       
                     </div>
                 </div>  
             </div>

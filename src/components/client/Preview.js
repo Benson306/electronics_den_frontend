@@ -45,10 +45,10 @@ const Preview = () => {
                 <div>
                     <div className="flex gap-2 items-center my-2 text-sm">
                         <div className="">Category:</div>
-                        <div className="flex flex-wrap gap-1">{data.type.map( tp => <span className="bg-gray-300 rounded-lg px-2 py-1">{tp}</span>)}</div>            
+                        <div className="flex flex-wrap gap-1 text-xs lg:text-sm">{data.type.map( tp => <span className="bg-gray-300 rounded-lg px-2 py-1">{tp}</span>)}</div>            
                     </div>
                     <div className="text-gray-500 pb-4 lg:pb-5 whitespace-pre-wrap text-xs lg:text-sm">{data.description}</div>
-                    <div className="text-gray-600 pb-4 lg:pb-5">Ksh {data.price}</div>
+                    <div className="text-gray-600 pb-4 lg:pb-5">Ksh {data.price.toLocaleString()}</div>
                     <hr />
                     <div className="flex py-4">
                             <div className="text-gray-500 w-20 flex items-center">Quantity</div>
