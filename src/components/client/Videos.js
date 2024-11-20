@@ -25,7 +25,7 @@ const Videos = () => {
             <img src={require('../../images/videos.jpg')} className='object-cover' style={{ width: '100%', maxHeight: '250px' }} alt="" />
         </div>
 
-        <div className='text-center mt-5 text-gray-950 text-bold font-serif text-xl tracking-wider'>Videos</div>
+        <div className='text-center mt-5 text-gray-900 text-bold font-serif text-xl tracking-wider'>Videos</div>
         { loading && <div className="text-center text-slate-500 text-md mb-5">Loading...</div>}
         <div className="text-center text-slate-500 text-md mb-5">({!loading && hoodies.length} items)</div>
 

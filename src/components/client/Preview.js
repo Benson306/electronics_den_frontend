@@ -28,7 +28,7 @@ const Preview = () => {
     }
 
 
-    return ( <div className="block lg:flex mt-10 lg:mt-20">
+    return ( <div className="block lg:flex mt-10 lg:mt-32">
         <ToastContainer />
         <div className="invisible lg:visible h-0 lg:h-auto lg:w-1/2 flex justify-center">
             <img src={`${process.env.REACT_APP_API_URL}/uploads/${data.image || data.thumbnail}`} className="object-contain" width="400px" alt="" />
@@ -78,7 +78,7 @@ const Preview = () => {
 
         
         </div>
-        <button className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif" onClick={() => handleAddToCart()}>
+        <button className="visible lg:collapse fixed bottom-0 bg-blue-900 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif" onClick={() => handleAddToCart()}>
             ADD TO CART
         </button>
         

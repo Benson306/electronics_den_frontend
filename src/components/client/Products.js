@@ -60,7 +60,7 @@ const Products = () => {
 
 
     return (
-        <div className="min-h-scree">
+        <div className="min-h-screen">
             {/* Search Bar */}
             <div className="flex items-center justify-center my-0 lg:my-2 mx-5">
                 <div className='border border-gray-400 rounded-lg flex items-center w-11/12 lg:w-1/2'>
@@ -148,7 +148,7 @@ const Products = () => {
 
                 {/* All Products Section */}
                 <div className="block w-full lg:w-5/6">
-                    <div className="text-center mt-2 lg:mt-5 text-gray-950 font-serif text-sm tracking-wider">
+                    <div className="text-center mt-2 lg:mt-5 text-gray-900 font-serif text-sm tracking-wider">
                         {selectedCategory == null ?  (<div>All Products</div>) : selectedCategory}
                     </div>
                     {loading && (

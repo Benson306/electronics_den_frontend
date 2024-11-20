@@ -40,7 +40,7 @@ const SuccessTransaction = () => {
             </div>
         </div>
         
-        <Link to={'/'}><div className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif" >
+        <Link to={'/'}><div className="visible lg:collapse fixed bottom-0 bg-blue-900 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif" >
             HOME
         </div></Link>
     
