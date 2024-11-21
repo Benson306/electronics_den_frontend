@@ -196,7 +196,7 @@ const Products = () => {
                                         <button onClick={(e)=>{
                                             e.preventDefault();
                                             handleAddToCart(hoodie)
-                                        }} className='bg-cyan-800 hover:bg-cyan-700 p-2 text-white rounded-lg mt-2 mx-auto w-1/2 text-sm'>Add To Cart</button>
+                                        }} className='bg-cyan-800 hover:bg-cyan-700 py-1 lg:py-2 p-2 text-white rounded-lg mt-2 mx-auto w-full lg:w-1/2 text-sm'>Add To Cart</button>
                                     </div>
                                 </Link>
                             ))}                       
