@@ -4,6 +4,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import CarouselSection from './CarouselSection';
 import SearchIcon from '@mui/icons-material/Search';
+import useCart from '../../utils/CartContext';
+import { ToastContainer } from 'react-toastify';
 
 const Products = () => {
     const [loading, setLoading] = useState(true);
@@ -56,11 +58,18 @@ const Products = () => {
     
         return matchesCategory && matchesSearchQuery;
     });
+
+    const { addToCart } = useCart();
+
+    const handleAddToCart = (data)=>{
+        addToCart({ ...data, quantity: 1 });
+    }
     
 
 
     return (
         <div className="min-h-screen">
+            <ToastContainer />
             {/* Search Bar */}
             <div className="flex items-center justify-center my-0 lg:my-2 mx-5">
                 <div className='border border-gray-400 rounded-lg flex items-center w-11/12 lg:w-1/2'>
@@ -176,11 +185,18 @@ const Products = () => {
                                         />
                                     </div>
 
-                                    <div className="text-center font-bold mt-5">
+                                    <div className="text-center font-bold mt-5 overflow-hidden whitespace-nowrap text-ellipsis">
                                         {hoodie.productName}
                                     </div>
                                     <div className="text-center text-gray-700">
                                         Ksh {hoodie.price.toLocaleString()}
+                                    </div>
+
+                                    <div className='flex justify-center'>
+                                        <button onClick={(e)=>{
+                                            e.preventDefault();
+                                            handleAddToCart(hoodie)
+                                        }} className='bg-cyan-800 hover:bg-cyan-700 p-2 text-white rounded-lg mt-2 mx-auto w-1/2 text-sm'>Add To Cart</button>
                                     </div>
                                 </Link>
                             ))}                       
