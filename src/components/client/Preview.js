@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import useCart from "../../utils/CartContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReadMoreText from "./ReadMoreText";
 
 
 const Preview = () => {
@@ -40,14 +41,14 @@ const Preview = () => {
         <div className="w-full lg:w-1/2 lg:pr-52 p-10">
            <div className="font-serif text-gray-800 text-bold lg:text-2xl tracking-wider pb-1 lg:pb-3">{data.productName || data.title}</div> 
            
-           <form>
-
                 <div>
                     <div className="flex gap-2 items-center my-2 text-sm">
                         <div className="">Category:</div>
                         <div className="flex flex-wrap gap-1 text-xs lg:text-sm">{data.type.map( tp => <span className="bg-gray-300 rounded-lg px-2 py-1">{tp}</span>)}</div>            
                     </div>
-                    <div className="text-gray-500 pb-2 lg:pb-2 whitespace-pre-wrap text-xs ">{data.description}</div>
+                    {/* <div className="text-gray-500 pb-2 lg:pb-2 whitespace-pre-wrap text-xs ">{data.description}</div> */}
+                    { data ? <ReadMoreText description={data.description} /> : null }
+
                     <div className="text-gray-600 pb-4 lg:pb-5">Ksh {data.price.toLocaleString()}</div>
                     <hr />
                     <div className="flex py-4">
@@ -65,7 +66,6 @@ const Preview = () => {
                     </div>
                 </div>
                 
-           </form>
            <hr />
 
            {/* <div className="text-bold py-8">Description</div>
