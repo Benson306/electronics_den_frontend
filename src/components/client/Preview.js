@@ -28,7 +28,7 @@ const Preview = () => {
     }
 
 
-    return ( <div className="block lg:flex mt-10 lg:mt-32">
+    return ( <div className="block lg:flex mt-5 lg:mt-10">
         <ToastContainer />
         <div className="invisible lg:visible h-0 lg:h-auto lg:w-1/2 flex justify-center">
             <img src={`${process.env.REACT_APP_API_URL}/uploads/${data.image || data.thumbnail}`} className="object-contain" width="400px" alt="" />
@@ -47,7 +47,7 @@ const Preview = () => {
                         <div className="">Category:</div>
                         <div className="flex flex-wrap gap-1 text-xs lg:text-sm">{data.type.map( tp => <span className="bg-gray-300 rounded-lg px-2 py-1">{tp}</span>)}</div>            
                     </div>
-                    <div className="text-gray-500 pb-4 lg:pb-5 whitespace-pre-wrap text-xs lg:text-sm">{data.description}</div>
+                    <div className="text-gray-500 pb-2 lg:pb-2 whitespace-pre-wrap text-xs ">{data.description}</div>
                     <div className="text-gray-600 pb-4 lg:pb-5">Ksh {data.price.toLocaleString()}</div>
                     <hr />
                     <div className="flex py-4">
