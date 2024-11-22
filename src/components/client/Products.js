@@ -121,8 +121,8 @@ const Products = () => {
                 </div>
             </div>
             
-            <div className='block lg:flex mx-2 lg:mx-5 gap-4 min-h-screen'>
-                <div className='mt-10 ml-14 collapse lg:visible h-0 lg:h-full w-0 lg:w-1/6'>
+            <div className='block lg:flex mx-2 lg:mx-5 gap-2 min-h-screen'>
+                <div className='mt-10 ml-5 collapse lg:visible h-0 lg:h-full w-0 lg:w-1/6 sticky top-10'>
                     <div className='font-bold'>CATEGORIES</div>
                         { loading && <div className='text-gray-700'>Loading ...</div>}
                         <div className='mt-2'>
