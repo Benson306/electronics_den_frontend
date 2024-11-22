@@ -22,7 +22,7 @@ const Cart = () => {
             { products.map(product =>(
                 <div className="flex justify-center lg:justify-around mx-5 lg:mx-80 mb-5 lg:mb-3 gap-1">
                     
-                    <img src={`${process.env.REACT_APP_API_URL}/uploads/${ product.image || product.thumbnail }`} className="w-20 h-20 lg:w-44 lg:h-auto"/>
+                    <img src={`${process.env.REACT_APP_API_URL}/uploads/${ product.image[0] }`} className="w-20 h-20 lg:w-44 lg:h-auto"/>
                     
                     <div className="block lg:flex lg:gap-5  lg:justify-around text-sm lg:text-base ml-5">
                         <div className="flex items-center text-xs lg:text-base w-44 lg:w-64 font-bold lg:font-normal">{ product.productName || product.title }</div>

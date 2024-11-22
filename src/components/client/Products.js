@@ -178,7 +178,7 @@ const Products = () => {
                                 >
                                     <div className="flex justify-center items-center">
                                         <img
-                                            src={`${process.env.REACT_APP_API_URL}/uploads/${hoodie.image}`}
+                                            src={`${process.env.REACT_APP_API_URL}/uploads/${hoodie.image[0]}`}
                                             width="200px"
                                             alt=""
                                             className="object-contain"
