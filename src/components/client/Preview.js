@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ReadMoreText from "./ReadMoreText";
 import ImageZoom from "./ImageZoom";
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 
 const Preview = () => {
@@ -45,6 +46,15 @@ const Preview = () => {
         } else {
             setDisplayImageIndex(0); // Wrap around to the first image
         }
+    }
+
+    function getVideoId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url?.match(regExp);
+    
+        return (match && match[2].length === 11)
+          ? match[2]
+          : null;
     }
 
 
@@ -120,6 +130,28 @@ const Preview = () => {
                     </div>
                     {/* <div className="text-gray-500 pb-2 lg:pb-2 whitespace-pre-wrap text-xs ">{data.description}</div> */}
                     { data ? <ReadMoreText description={data.description} /> : null }
+
+                    {
+                        data.links.length > 0 && <div className="flex items-center text-sm gap-2 mt-5 mb-2">
+                        <YouTubeIcon sx={{color: "red"}} />
+                        Get to know more about the product from Youtube:
+                    </div> }
+                    <div className="mb-5 block lg:flex mx-auto lg:mx-0 gap-4 w-full">
+                    {
+                        data.links && data.links.length > 0 && data.links.map(link => (
+                        <div
+                            className="text-xs text-blue-500 hover:text-blue-400 underline overflow-hidden whitespace-nowrap text-ellipsis px-2 mb-5"
+                        >
+                            <iframe allowFullScreen={true} width="280" height="200"
+                                src={`https://www.youtube.com/embed/${getVideoId(link)}?autoplay=0&mute=1` }>
+                            </iframe>
+                            {/* <a href={link} target="_blank" rel="noopener noreferrer">
+                            {link}
+                            </a> */}
+                        </div>
+                        )) 
+                    }
+                    </div>
 
                     <div className="text-gray-600 pb-4 lg:pb-5">Ksh {data.price.toLocaleString()}</div>
                     <hr />
