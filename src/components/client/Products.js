@@ -84,31 +84,63 @@ const Products = () => {
 
             <CarouselSection />
 
-            { /* Search By Category */}
-            <div className='w-full'>
-                <div className="flex justify-center lg:justify-end gap-2 text-sm items-center mt-2 lg:mt-5 lg:mr-5">
-                    <div>Sort By Category: </div>
-                    <select 
-                        onChange={e => {
-                            if(e.target.value == "All"){
+            { /* Search By Category and Subcategory */}
+            <div className="w-full">
+                <div className="flex flex-wrap justify-center lg:justify-end gap-2 text-sm items-center mt-2 lg:mt-5 lg:mr-5">
+                    <div>Sort By Category:</div>
+                    <select
+                        onChange={(e) => {
+                            if (e.target.value === "All") {
                                 setSelectedCategory(null);
-                            }else{
+                                setSelectedSubCategory(null);
+                            } else {
                                 setSelectedCategory(e.target.value);
+                                setSelectedSubCategory(null); // Reset subcategory when category changes
                             }
-                        }} 
-                        className="p-1 border border-gray-400 rounded-md"
+                        }}
+                        className="p-1 border border-gray-400 rounded-md w-40"
                     >
-                        <option value={null}>All Electronics</option> 
-                        {
-                            !loading && !error && categories.length > 0 && categories.map(category => 
-                            ( 
-                                <option value={category.category}>{category.category}</option> 
-                            )
-                        )}
+                        <option value="All">All Electronics</option>
+                        {!loading &&
+                            !error &&
+                            categories.length > 0 &&
+                            categories.map((category) => (
+                                <option key={category.category} value={category.category}>
+                                    {category.category}
+                                </option>
+                            ))}
                     </select>
+
+                    {/* Show Subcategories if a Category is Selected */}
+                    {selectedCategory && (
+                        <div className="flex items-center">
+                            <div>Subcategory:</div>
+                            <select
+                                onChange={(e) => {
+                                    if (e.target.value === "All") {
+                                        setSelectedSubCategory(null);
+                                    } else {
+                                        setSelectedSubCategory(e.target.value);
+                                    }
+                                }}
+                                className="p-1 border border-gray-400 rounded-md w-40 ml-2"
+                            >
+                                <option value="All">All</option>
+                                {categories
+                                    .find((category) => category.category === selectedCategory)
+                                    ?.sub_categories.map((subCategory, index) => (
+                                        <option key={index} value={subCategory}>
+                                            {subCategory}
+                                        </option>
+                                    ))}
+                            </select>
+                        </div>
+                    )}
                 </div>
             </div>
+
             
+            {/* Body Section */}
             <div className='block lg:flex mx-2 lg:mx-5 gap-2 min-h-screen'>
                 {/* Left Pane - Categories */}
                 <div className="mt-10 ml-5 collapse lg:visible h-0 lg:h-full w-0 lg:w-1/6 sticky top-10">
