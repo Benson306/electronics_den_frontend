@@ -9,7 +9,7 @@ function Footer() {
     <div className="mt-5 text-center p-5 text-xs bg-gray-100 border-t border-gray-300">   
         <div className='flex gap-1 justify-center items-center my-1'>
             <PhoneIcon sx={{fontSize:16}} />
-            <span className=''>0797486506</span>
+            <span className=''>+254 117 074 301</span>
         </div>
         <div className='gap-1 justify-center items-center'>
             <LocationOnIcon sx={{fontSize:16}} /> REHEMA HSE 6TH FLOOR 01 - ALONG STANDARD STREET, NAIROBI 
