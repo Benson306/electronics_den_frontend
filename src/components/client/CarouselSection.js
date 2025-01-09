@@ -6,32 +6,32 @@ function CarouselSection() {
   const navigate = useNavigate();
 
   return (
-    <Carousel className="h-40 lg:h-96" 
+    <Carousel className="h-28 lg:h-96" 
     transition={{duration: 0.7}} 
     autoplay={true}
     loop={true}
-    // prevArrow={({handlePrev})=>{
+    prevArrow={({handlePrev})=>{
 
-    // }}
-    // nextArrow={({handleNext})=>{
+    }}
+    nextArrow={({handleNext})=>{
 
-    // }}
+    }}
     >
-      <div className="relative h-40 lg:h-96 w-full">
+      <div className="relative h-28 lg:h-96 w-full">
         <img
           src={require('../../images/Home_of_electronic_copy.jpg')}
           alt="image 1"
           className="h-full w-full object-contain lg:object-cover"
         />
       </div>
-      <div className="relative h-40 lg:h-96 w-full">
+      <div className="relative h-28 lg:h-96 w-full">
         <img
           src={require('../../images/Home_of_electronic_copy.jpg')}
           alt="image 2"
           className="h-full w-full object-contain lg:object-cover"
         />
       </div>
-      <div className="relative h-40 lg:h-96 w-full">
+      <div className="relative h-28 lg:h-96 w-full">
         <img
           src={require('../../images/Home_of_electronic_copy.jpg')}
           alt="image 3"

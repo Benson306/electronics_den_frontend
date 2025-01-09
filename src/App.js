@@ -8,6 +8,7 @@ import Navigation from "./components/client/Navigation";
 import Preview from "./components/client/Preview";
 import { CartProvider } from "./utils/CartContext";
 import Products from "./components/client/Products";
+import NewProducts from "./components/client/NewProducts";
 
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
       <HeaderBar />
       <Routes>
         {/* <Route path="/" element={<Navigation />} /> */}
-        <Route path="/" element={<Products />} />
+        <Route path="/" element={<NewProducts />} />
+        {/* <Route path="/" element={<Products />} /> */}
         <Route path="/preview" element={<Preview />}/>
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />

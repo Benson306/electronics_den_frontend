@@ -11,7 +11,7 @@ function ProductCard({ hoodie }) {
         addToCart({ ...data, quantity: 1 });
     }
   return (
-    <div className="w-1/2 md:w-1/4 p-3 lg:shadow-md border border-gray-100 rounded-lg lg:mx-1 mb-1">
+    <div className="w-1/2 md:w-1/4 p-3 lg:shadow-md border border-gray-100 rounded-lg lg:mx-1 mb-1 bg-white">
         <ToastContainer />
         <Link
             to="/preview"
@@ -19,10 +19,11 @@ function ProductCard({ hoodie }) {
             key={hoodie.productName}
             state={{ data: hoodie }}
         >
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center h-28 lg:h-44">
                 <img
                     src={`${process.env.REACT_APP_API_URL}/uploads/${hoodie.image[0]}`}
-                    width="200px"
+                    width={200}
+                    height={100}
                     alt=""
                     className="object-contain"
                 />
